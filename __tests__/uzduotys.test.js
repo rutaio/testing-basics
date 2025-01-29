@@ -3,6 +3,8 @@ const {
   countLettersInText,
   pakelkKvadratu,
   koksPerimetras,
+  biggestNumber,
+  returnNull,
 } = require('../src/uzduotys');
 
 describe('Testuoju funkcijas is uzdaviniu', () => {
@@ -26,6 +28,27 @@ describe('Testuoju funkcijas is uzdaviniu', () => {
   });
 
   test('Tikrinu ar skaiciuoja perimetra', () => {
-    expect(koksPerimetras(3, 2)).toBe(6);
+    expect(koksPerimetras(5)).toBe(20);
+    expect(koksPerimetras(15)).toBe(60);
+    expect(() => koksPerimetras(0)).toThrow(
+      'Kvadrato krastine negali buti minusine!'
+    );
+    expect(() => koksPerimetras(-5)).toThrow(
+      'Kvadrato krastine negali buti minusine!'
+    );
+    expect(() => koksPerimetras('absd')).toThrow(
+      'Kvadrato krastine turi buti skaicius!'
+    );
+  });
+
+  test('Tikrinu didziausia skaiciu is skaiciu masyvo', () => {
+    expect(biggestNumber([1, 2, 3, 4, 5])).toBe(5);
+    expect(biggestNumber([-1, -2, -3])).toBe(-1);
+    expect(() => biggestNumber('')).toThrow('Masyvas negali buti tuscias!');
+  });
+
+  test('Tikrinu ar grazina Null', () => {
+    expect(returnNull()).toBeNull();
+    expect(returnNull(1)).toBeNull();
   });
 });
